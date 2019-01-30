@@ -8,16 +8,19 @@ node(){
  {
            triggerCause = triggerCause.split()[4].replaceAll('"', '')
            pipelineParams.put('copy_metadata_from', triggerCause)
-       
+           println triggerCause
+           println pipelineParams
            envDir = pipelineParams.copy_metadata_from.split('/')[-3].trim()
            module = pipelineParams.copy_metadata_from.split('/')[-2].trim()
            jobName = pipelineParams.copy_metadata_from.split('/')[-1].trim()      
+           println envDir + " " + module + " " + jobName
      
            copyArtifacts projectName: pipelineParams.copy_metadata_from, fingerprintArtifacts: true, flatten: true, filter: 'metadata.json'
   
     if (module == "Core"){
           image_name = sh(returnStdout: true, script: 'jq -r .image_name metadata.json').trim()
           image_tag = sh(returnStdout: true, script: 'jq -r .image_tag metadata.json').trim()
+          println image_name + " " + image_tag
       } 
       else
                    
