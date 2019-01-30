@@ -1,6 +1,6 @@
 node(){
- cleanWs()
   stage('check upstream'){
+           cleanWs()
            pipelineParams = [:]
            def upstream = currentBuild.rawBuild.getCause(hudson.model.Cause$UpstreamCause)
            triggerCause = upstream?.shortDescription
