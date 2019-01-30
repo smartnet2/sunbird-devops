@@ -32,10 +32,10 @@ node(){
       else
            println 'inside else'        
            artifact_version = sh(returnStdout: true, script: 'jq -r .artifact_version metadata.json').trim() 
-           pipelineParams.put('envDir', env)
+           pipelineParams.put('env', envDir)
            pipelineParams.put('module', module)
-//           pipelineParams.put('jobName', jobName)
-//           pipelineParams.put('artifact_version', artifact_version)
+           pipelineParams.put('jobName', jobName
+           pipelineParams.put('artifact_version', artifact_version)
            pipelineParams.put('image_name', image_name)
            pipelineParams.put('image_tag', image_tag)    
    
