@@ -27,6 +27,9 @@ node(){
           println 'inside if'
           image_name = sh(returnStdout: true, script: 'jq -r .image_name metadata.json').trim()
           image_tag = sh(returnStdout: true, script: 'jq -r .image_tag metadata.json').trim()
+          pipelineParams.put('env', envDir)
+          pipelineParams.put('image_name', image_name)
+          pipelineParams.put('image_tag', image_tag
           println image_name + " " + image_tag
       } 
       else
@@ -35,9 +38,7 @@ node(){
            pipelineParams.put('env', envDir)
            pipelineParams.put('module', module)
            pipelineParams.put('jobName', jobName)
-           pipelineParams.put('artifact_version', artifact_version)
-           pipelineParams.put('image_name', image_name)
-           pipelineParams.put('image_tag', image_tag)    
+           pipelineParams.put('artifact_version', artifact_version)    
    
     if (pipelineParams.image_tag == null){
         sh """
