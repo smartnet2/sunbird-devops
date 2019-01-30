@@ -37,7 +37,7 @@ node(){
                               mkdir -p $JENKINS_HOME/summary/${pipelineParams.env}
                               touch -a $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
                               sed -i "s/${pipelineParams.jobName}.*//g" $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
-                              sed -i "/^$/d" $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
+                              sed -i "/^\$/d" $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
                               echo "${pipelineParams.jobName} : ${pipelineParams.artifact_version}" >> $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
                           """
                        }
