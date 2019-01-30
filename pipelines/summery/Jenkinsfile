@@ -18,14 +18,14 @@ node(){
            copyArtifacts projectName: pipelineParams.copy_metadata_from, fingerprintArtifacts: true, flatten: true, filter: 'metadata.json'
   
     if (module == "Summary"){
+          println 'inside if'
           image_name = sh(returnStdout: true, script: 'jq -r .image_name metadata.json').trim()
           image_tag = sh(returnStdout: true, script: 'jq -r .image_tag metadata.json').trim()
           println image_name + " " + image_tag
       } 
       else
-                   
+           println 'inside else'        
            artifact_version = sh(returnStdout: true, script: 'jq -r .artifact_version metadata.json').trim() 
-  
            pipelineParams.put('envDir', env)
            pipelineParams.put('module', module)
            pipelineParams.put('jobName', jobName)
