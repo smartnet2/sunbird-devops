@@ -46,7 +46,7 @@ node(){
                               mkdir -p $JENKINS_HOME/summary/${pipelineParams.env}
                               touch -a $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
                               sed -i "s/${pipelineParams.image_name}.*//g" $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
-                              sed -i "/^$/d" $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
+                              sed -i "/^\$/d" $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
                               echo "${pipelineParams.image_name} : ${pipelineParams.image_tag}" >>   $JENKINS_HOME/summary/${pipelineParams.env}/summary.txt
                           """
               }
