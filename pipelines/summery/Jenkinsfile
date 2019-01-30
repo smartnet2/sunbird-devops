@@ -14,7 +14,7 @@ node(){
        module = pipelineParams.copy_metadata_from.split('/')[-2].trim()
        jobName = pipelineParams.copy_metadata_from.split('/')[-1].trim()      
      
-       copyArtifacts projectName: pipelineParams.copy_metadata_from, fingerprintArtifacts: true, flatten: true, selector: specific(params.build_number), filter: 'metadata.json'
+       copyArtifacts projectName: pipelineParams.copy_metadata_from, fingerprintArtifacts: true, flatten: true, filter: 'metadata.json'
   
     if (module == "Core"){
           image_name = sh(returnStdout: true, script: 'jq -r .image_name metadata.json').trim()
