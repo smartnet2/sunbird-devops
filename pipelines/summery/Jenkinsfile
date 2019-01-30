@@ -49,7 +49,7 @@ node(){
 
                     if (pipelineParams.image_tag != null){
                         sh """
-           mkdir -p $JENKINS_HOME/summary/${.envDir}
+           mkdir -p $JENKINS_HOME/summary/${envDir}
            touch -a $JENKINS_HOME/summary/${envDir}/summary.txt
            sed -i "s/${image_name}.*//g" $JENKINS_HOME/summary/${envDir}/summary.txt
            sed -i "/^\$/d" $JENKINS_HOME/summary/${envDir}/summary.txt
