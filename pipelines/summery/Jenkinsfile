@@ -1,5 +1,5 @@
 node(){
- cleanWS()
+ cleanWs()
 
            values = [:]
            def upstream = currentBuild.rawBuild.getCause(hudson.model.Cause$UpstreamCause)
