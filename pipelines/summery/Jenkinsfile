@@ -1,10 +1,15 @@
 node(){
  cleanWs()
-
+  stage('check upstream'){
            pipelineParams = [:]
            def upstream = currentBuild.rawBuild.getCause(hudson.model.Cause$UpstreamCause)
            triggerCause = upstream?.shortDescription
            println triggerCause
+
+  }
+
+  stage('tasks'{
+
     if (triggerCause != null)
  {
            triggerCause = triggerCause.split()[4].replaceAll('"', '')
@@ -57,4 +62,4 @@ node(){
 else 
 	println "This job can be only triggered from an upstream project"
 }
-
+}
