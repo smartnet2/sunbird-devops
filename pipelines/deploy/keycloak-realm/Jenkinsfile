@@ -30,7 +30,7 @@ node() {
                                """.stripIndent().replace("\n", " ")
                         values.put('ansiblePlaybook', ansiblePlaybook)
                         values.put('ansibleExtraArgs', ansibleExtraArgs)
-                        ansible_playbook_run(values)
+                        // ansible_playbook_run(values)
                     } else {
                         println(ANSI_BOLD + ANSI_YELLOW + '''\
                     Option chosen is Local, using the artifacts copied 
@@ -38,10 +38,6 @@ node() {
                     }
                 }
                 stage('deploy artifact') {
-                    sh """
-                       unzip ${artifact}
-                       tar zxvf keycloak_build.tar.gz -C ansible
-                    """
                     ansiblePlaybook = "${currentWs}/ansible/keycloak.yml"
                     ansibleExtraArgs = "--tags keycloak-bootstrap --vault-password-file  /run/secrets/vault-pass"
                     values.put('ansiblePlaybook', ansiblePlaybook)
