@@ -4,6 +4,10 @@
     port: 8080
     delay: 5
 
+- name: Installing pip modules
+  pip:
+    name: "{{item}}"
+
 - name: copy scripts to bootstrap
   copy:
     src: files/python-keycloak-0.12.0
