@@ -6,7 +6,7 @@
 
 - name: Installing pip modules
   pip:
-    name: "{{item}}"
+    name: setuputils
 
 - name: copy scripts to bootstrap
   copy:
