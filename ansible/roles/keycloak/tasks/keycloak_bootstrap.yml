@@ -1,10 +1,16 @@
 - name: Waiting Until Keycloak is fully functional 
   wait_for:
+    host: "{{ inventory_hostname }}"
     port: 8080
     delay: 5
 
+- name: copy scripts to bootstrap
+  copy:
+    src: files/python-keycloak-0.12.0
+    dest: /tmp/
+
 - name: Initialize python library to run keycloak bootstrap script
-  shell: cd {{ role_path }}/files/python-keycloak-0.12.0 && python setup.py install
+  shell: cd /tmp/python-keycloak-0.12.0 && python setup.py install
 
 - name: Save keycalok vars to json
   template: src="keycloak-bootstrap.conf.j2" dest="/tmp/keycloak-bootstrap.conf.json" mode="0644"
@@ -20,8 +26,8 @@
     seconds: 100
 
 - name: Run the keycloak bootstrap script
-  shell:  cd {{ role_path }}/files/python-keycloak-0.12.0/keycloak/ && python keycloak_main.py /tmp/keycloak-bootstrap.conf.json
+  shell:  cd /tmp/python-keycloak-0.12.0/keycloak/ && python keycloak_main.py /tmp/keycloak-bootstrap.conf.json
   register: out
   until: '"404" not in out.stderr'
   retries: 2
-  delay: 10
+  delay: 20
