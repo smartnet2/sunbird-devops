@@ -5,8 +5,12 @@
     delay: 5
 
 - name: Installing pip modules
-  pip:
-    name: setuputils
+  apt:
+    name: "{{item}}"
+    update_cache: yes
+  with_item:
+    - python-pip
+    - python-setuptools
 
 - name: copy scripts to bootstrap
   copy:
