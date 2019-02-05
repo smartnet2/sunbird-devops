@@ -8,7 +8,7 @@
   apt:
     name: "{{item}}"
     update_cache: yes
-  with_item:
+  with_items:
     - python-pip
     - python-setuptools
 
