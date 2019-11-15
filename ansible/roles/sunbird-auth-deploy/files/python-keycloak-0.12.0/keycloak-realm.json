@@ -1370,7 +1370,6 @@
   "browserSecurityHeaders": {
     "xContentTypeOptions": "nosniff",
     "xRobotsTag": "none",
-    "xFrameOptions": "SAMEORIGIN",
     "xXSSProtection": "1; mode=block",
     "contentSecurityPolicy": "frame-src 'self'"
   },
